@@ -1,0 +1,11 @@
+{% extends "model-form.html" %}
+
+{% block head %}{{ super() }}{% endblock %}
+
+{% block form %}
+  {{ form.hidden_tag() }}
+  {{ form.email.label }}
+  {{ form.email(size=32) }}
+  <br>
+  {{ form.submit() }}
+{% endblock %}

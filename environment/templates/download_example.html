@@ -1,0 +1,38 @@
+{% extends "model.html" %}
+
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ heading }}</h1>
+  <p class="important">{{ description }}</p>
+  <table cellspacing="0" width="100%">
+     <thead>
+       <tr>
+         {% for i in result_set[0] %}
+           <th>{{i}}</th>
+         {% endfor %}
+       </tr>
+     </thead>
+     <tbody>
+       {% for item in result_set[1:] %}
+       <tr>
+         {% for i in range(item|length) %}
+           <td>{{item[i]}}</td>
+         {% endfor %}
+       </tr>
+       {% endfor %}
+     </tbody>
+   </table>
+   <a href="{{ url_for('download_example.download_example', file_format='csv') }}" class="button">Generate CSV</a>
+   <span style="padding: 15px 15px;"></span>
+   <a href="{{ url_for('download_example.download_example', file_format='xlsx') }}" class="button">Generate XLSX</a>
+   {% if file %}
+   <br></br>
+     <a target="_blank" href={{ url_for('download', filename=file) }}>Click to download</a>
+   {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "model.html" %}
+
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="centered">
+    <h1>{{ heading }}</h1>
+    <form action="" method="post" novalidate>
+      {% block form %}{% endblock %}
+    </form>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+            {% for message in messages %}
+              <p><strong><font color="red">{{ message }}</font></strong></p>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+  </div>
+{% endblock %}
